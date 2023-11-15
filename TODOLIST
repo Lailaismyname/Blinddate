@@ -1,0 +1,44 @@
+Wat moet de gebruiker zien als die ingelogd is? 
+navigatie om te kunnen navigeren naar: 
+        -de gebruikers eigen profiel pagina
+        -pagina om het profiel aan te passen
+        -de pagina waar het swipen gebeurt
+        -pagina met matches
+        -pagina met overzicht van alle huidige chats
+        -pagina voor de individuele chats
+Hoe wil ik dat vorm geven?
+- weet ik nog niet
+Welke models heb ik nodig?
+- Heb ik nog geen goed plan voor
+Welke data ga ik bijhouden?
+        gebruikersgegevens:
+        - leeftijd
+        - woonplaats
+        - hobby's
+        - interesses
+        voorkeuren:
+        - leeftijd
+        - woonplaats
+        !! ik denk dat als ik de optie geef om op voorkeuren te zoeken 
+        dat ik een voorgeselecteerde lijst moet maken hiervoor, 
+        waar de gebruiker dan uit kan kiezen !!
+        - hobby's
+        - interesses
+        matches: 
+        - wie is met wie gematched
+        chats:
+        - inhoud van de chat berichten
+        - timestamps
+        - tussen welke 2 gebruikers zijn deze chats
+        - hoeveel chats zijn eruitgewisseld. 
+        
+ik wil na x aantal chats de optie laten verschijnen om een foto uit te wisselen.
+Na hoeveel uitgewisselde berichten is dat handig? 20? of 50? idk
+
+Ik moet nog uitzoeken hoe je een gebruiker een foto kan laten uploaden, 
+en die kan laten weergeven in de chat. 
+Of ik laat de gebruiker wel een profiel foto kiezen, 
+maar scherm die af totdat het aantal benodigde uitgewisselde berichten behaald is. 
+
+
+

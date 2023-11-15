@@ -10,21 +10,30 @@
 
     <body>
             {% if user.is_authenticated %}
+            <header> 
+                <div class="brand-container mt30">
+                    <img src="{% static 'img/heart_logo.png' %}" alt="logo" class="medium-logo">
+                    <p class="brand-text"> Blind Date </p>
+                </div>
+            </header>
             <nav>
                 <ul>
+                    <li>
+                        {{user.username}}
+                    </li>
                     <li>
                         <a href="{% url 'logout' %}">Logout</a>
                     </li>
                 </ul>
             </nav>
+            {% endif %} 
+
         <main class="main-page-content">
             {% block main %}
             {% endblock %}
         </main>
-            {% else %}
              {% block signup %}
              {% endblock %}
-        {% endif %} 
 
     </body>
     </html>
