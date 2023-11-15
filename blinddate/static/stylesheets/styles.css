@@ -1,0 +1,131 @@
+/*FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Cinzel+Decorative:wght@400;700;900&family=Gruppo&family=Henny+Penny&family=Herr+Von+Muellerhoff&family=Kdam+Thmor+Pro&family=Marck+Script&family=Sacramento&family=Smooch+Sans:wght@100;200;300;400;500;600;700;800;900&family=Syncopate&family=Tangerine:wght@400;700&family=Unica+One&family=Vina+Sans&display=swap');
+/*Geimporteerde Fonts: 
+font-family: 'Cinzel Decorative', serif;
+font-family: 'Gruppo', sans-serif;
+font-family: 'Herr Von Muellerhoff', cursive;
+font-family: 'Kdam Thmor Pro', sans-serif;
+font-family: 'Marck Script', cursive;
+font-family: 'Sacramento', cursive;
+font-family: 'Smooch Sans', sans-serif;
+font-family: 'Syncopate', sans-serif;
+font-family: 'Tangerine', cursive;
+font-family: 'Unica One', sans-serif;
+font-family: 'Vina Sans', sans-serif;
+*/
+/* kleurenpallette 
+diep donker groen en donker paars schijnt mysterieus the omvatten
+English Violet                  #574D68
+Persian Green                   #1B998B
+Dark Green                      #00241B
+Sunset                          #FFCB77
+Drab dark brown                 #37371F
+*/
+/* optie 2 zwart/goud kleurrenpalette 
+donkerzwart         #0f0f0f
+donkergrijs         #292929
+grijs               #424242
+goud                #CBB26A
+goud 2              #be9e44
+licht goud          #d8c690
+*/
+
+:root{
+    --donkerzwart: #0f0f0f;
+    --donkergrijs: #292929;
+    --grijs: #424242;
+    --goud: #CBB26A;
+    --goud2: #be9e44;
+    --lichtgoud:#d8c690;
+}
+/* ~~~~~~~~~~~~~~~ Universal styles ~~~~~~~~~~~~~~~ */
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.white-text{
+    color: white;
+}
+.mt30{
+    /* mt staat voor margin top */
+    margin-top: 30px;
+}
+body{
+    background: var(--donkerzwart);
+}
+.btn-style{
+    background: -webkit-linear-gradient(var(--lichtgoud), var(--goud),var(--goud2));
+    padding: 9px 15px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--donkerzwart);
+    letter-spacing: 1px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+.btn-style:hover{
+    background:-webkit-linear-gradient(var(--goud2), var(--lichtgoud),var(--goud));
+}
+.link-text{
+    color: var(--goud2)
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~ Logo ~~~~~~~~~~~~~~~~~~~~~ */
+.medium-logo{
+    width: 50px;
+}
+.brand-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+}
+.brand-text{
+    color: var(--goud);
+    background: -webkit-linear-gradient(var(--lichtgoud), var(--goud),var(--goud2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 36px;
+    font-weight: 500;
+    margin: 0 18px;
+}
+/* ~~~~~~~~~~~~~~~~~ Login and sign up Page ~~~~~~~~~~~~~~~~~ */
+.login{
+    margin: auto;
+    margin-top: 10vh;
+    height: 80vh;
+    width: 80vw;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--donkerzwart);
+    box-shadow: 4px 0 4px var(--goud), -4px 0 4px var(--lichtgoud);
+}
+.login > p{
+    color: white;
+    text-align: center;
+}
+.login > form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.form-field{
+    height: 45px;
+    width: 85%;
+    border-radius: 6px;
+    background: var(--donkergrijs);
+    color: white;
+    padding: 3px;
+    margin: 15px 0px;
+}
+.register-error,.err-msg{
+    min-height: 50px;
+    text-align: center;
+}
+.register-error >ul >li{
+    color: white;
+}
+/* ~~~~~~~~~~~~~~~~~ Index Page ~~~~~~~~~~~~~~~~~ */
+

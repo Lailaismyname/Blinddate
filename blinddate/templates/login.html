@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block signup %}
+<div class="login">
+    <div class="brand-container mt30">
+        <img src="{% static 'img/heart_logo.png' %}" alt="logo" class="medium-logo">
+        <p class="brand-text"> Blind Date </p>
+    </div>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="username" name="username" class="form-field">
+        <input type="password" placeholder="password" name="password" class="form-field">
+        <input type="submit" value="login" name="login" class="btn-style">
+    </form>
+    <div class="err-msg">
+        {% for message in messages %}
+        <p class="white-text"> {{message}} </p>
+        {% endfor %}
+    </div>
+    <p> Don't have an account? <a href="{% url 'register' %}" class="link-text">Sign up</a></p>
+</div>
+{% endblock %}
