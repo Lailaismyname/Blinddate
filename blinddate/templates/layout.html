@@ -16,13 +16,16 @@
                     <p class="brand-text"> Blind Date </p>
                 </div>
             </header>
-            <nav>
+            <nav class="nav-bar">
                 <ul>
-                    <li>
+                    <li class="username-label">
                         {{user.username}}
                     </li>
-                    <li>
+                    {% comment %} <li>
                         <a href="{% url 'logout' %}">Logout</a>
+                    </li> {% endcomment %}
+                    <li>
+                        <img src="{%static 'img/menu.png' %}" alt="menu-selection" class="burger-menu-btn" id="menu-btn">
                     </li>
                 </ul>
             </nav>

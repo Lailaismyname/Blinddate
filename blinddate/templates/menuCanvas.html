@@ -1,0 +1,24 @@
+{% load static %}
+
+{% block canvasmenu %}
+    <ul class="menu-canvas">
+        <li class="menu-canvas-item">
+            <a href="{% url 'index' %}" class="nav-url">Home</a>
+        </li>
+        <li class="menu-canvas-item">
+            <a href="{% url 'profile' %}" class="nav-url">Profile</a>
+        </li>
+        <li class="menu-canvas-item">
+            <a href="{% url 'find_love' %}" class="nav-url">Find love</a>
+        </li>
+        <li class="menu-canvas-item">
+            <a href="{% url 'matches' %}" class="nav-url">Matches</a>
+        </li>
+        <li class="menu-canvas-item">
+            <a href="{% url 'chats' %}" class="nav-url">Chats</a>
+        </li>
+        <li class="menu-canvas-item">
+            <a href="{% url 'logout' %}" class="nav-url">Logout</a>
+        </li>
+    </ul>
+{% endblock %}

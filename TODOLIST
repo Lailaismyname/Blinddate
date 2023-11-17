@@ -1,13 +1,15 @@
-Wat moet de gebruiker zien als die ingelogd is? 
-navigatie om te kunnen navigeren naar: 
-        -de gebruikers eigen profiel pagina
-        -pagina om het profiel aan te passen
-        -de pagina waar het swipen gebeurt
-        -pagina met matches
-        -pagina met overzicht van alle huidige chats
-        -pagina voor de individuele chats
-Hoe wil ik dat vorm geven?
-- weet ik nog niet
+!! Oke voor morgen, de models maken.
+
+Opmaak en content voor Pagina's
+- Index/Home pagina
+- Profile Pagina
+        - Edit Profile Pagina
+- Find Love Pagina
+- Matches Pagina, is deze uberhaupt nodig? kan samen met chats?
+- Chats Pagina
+        - Individuele Chat Pagina
+
+
 Welke models heb ik nodig?
 - Heb ik nog geen goed plan voor
 Welke data ga ik bijhouden?
@@ -33,7 +35,7 @@ Welke data ga ik bijhouden?
         - hoeveel chats zijn eruitgewisseld. 
         
 ik wil na x aantal chats de optie laten verschijnen om een foto uit te wisselen.
-Na hoeveel uitgewisselde berichten is dat handig? 20? of 50? idk
+gebruiker mag kiezen hoeveel berichten uitwisselen voor de foto uitwisseling. opties 25, 50, 100 of 250 zoiets?
 
 Ik moet nog uitzoeken hoe je een gebruiker een foto kan laten uploaden, 
 en die kan laten weergeven in de chat. 

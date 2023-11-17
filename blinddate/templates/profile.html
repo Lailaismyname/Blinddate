@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block main %}
+{% include 'menucanvas.html' %}
+    <div class="main-content">
+        <div class="profile-card">
+            <img src="#" alt="profile foto of {{user.username}}">
+        </div>
+        <div>
+            <h2>{{user.username}}
+        </div>
+        </div>
+{% endblock %}

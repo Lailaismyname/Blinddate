@@ -58,9 +58,51 @@ def register_view(request):
     return render(request,"register.html",context)
 
 
-#deze decorator schermt views af als de gebruiker niet ingelogd is, zo kan de gebruiker ook niet direct naar de url gaan!!
+# View for the homepage
 @login_required(login_url='login') 
 def index(request):
     ...
     context = {}
     return render(request,"index.html",context)
+
+
+#  View for the Profile page 
+@login_required(login_url='login') 
+def profile(request):
+    context={}
+    return render(request,"profile.html",context)
+
+
+#  View for the Edit Profile page 
+@login_required(login_url='login') 
+def edit_profile(request):
+    context={}
+    return render(request,"editProfile.html",context)
+
+
+#  View for the Find love page 
+@login_required(login_url='login') 
+def find_love(request):
+    context={}
+    return render(request,"findLove.html",context)
+
+
+#  View for the Matches page 
+@login_required(login_url='login') 
+def matches(request):
+    context={}
+    return render(request,"matches.html",context)
+
+
+#  View for the Chats page 
+@login_required(login_url='login') 
+def chats(request):
+    context={}
+    return render(request,"chats.html",context)
+
+
+#  View for the individual Chat page 
+@login_required(login_url='login') 
+def individual_chat(request):
+    context={}
+    return render(request,"individualChat.html",context)

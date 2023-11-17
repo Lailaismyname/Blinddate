@@ -69,7 +69,25 @@ body{
 .link-text{
     color: var(--goud2)
 }
-/* ~~~~~~~~~~~~~~~~~~~~~~~ Logo ~~~~~~~~~~~~~~~~~~~~~ */
+.transparent-btn{
+    background: none;
+    border: none;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~ Logo's ,icon, brand things ~~~~~~~~~~~~~~~~~~~~~ */
+.username-label{
+    color: var(--goud);
+    background: -webkit-linear-gradient(var(--goud2), var(--lichtgoud),var(--goud));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 24px;
+    margin: 5px 18px;
+}
+.burger-menu-btn{
+    width: 40px;
+    cursor: pointer;
+    margin: 5px 10px;
+}
 .medium-logo{
     width: 50px;
 }
@@ -88,6 +106,46 @@ body{
     font-size: 36px;
     font-weight: 500;
     margin: 0 18px;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~ NAV BAR ~~~~~~~~~~~~~~~~~~~~~~~~ */
+.nav-bar > ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--grijs);
+    border-bottom: 1px solid var(--grijs);
+}
+.nav-bar > ul > li,
+.nav-bar > ul > li > a  {
+    color: white;
+    list-style-type: none;
+    text-decoration: none;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~ menu canvas ~~~~~~~~~~~~~~~~~~~~~~~~ */
+.menu-canvas{
+    background: linear-gradient(var(--donkerzwart),var(--donkergrijs),var(--grijs)); 
+    display: none;
+    position: sticky;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.menu-canvas-item{
+    cursor: pointer;
+    border: 2px solid var(--grijs);
+    height: 13.3vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    color: var(--goud2);
+}
+.nav-url{
+    color: var(--goud2);
+    text-decoration: none;
 }
 /* ~~~~~~~~~~~~~~~~~ Login and sign up Page ~~~~~~~~~~~~~~~~~ */
 .login{
@@ -128,4 +186,9 @@ body{
     color: white;
 }
 /* ~~~~~~~~~~~~~~~~~ Index Page ~~~~~~~~~~~~~~~~~ */
+
+/* ~~~~~~~~~~~~~~~~~ Profile Page ~~~~~~~~~~~~~~~~~ */
+.main-content{
+    color:white;
+}
 
