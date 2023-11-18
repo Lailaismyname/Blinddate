@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import Http404
 # Forms 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterForm
+from .forms import RegisterForm, ProfileForm
 # Models
 from .models import User, Profile
 
@@ -86,7 +86,15 @@ def profile(request,profile_id):
 #  View for the Edit Profile page 
 @login_required(login_url='login') 
 def edit_profile(request):
-    context={}
+    profile_form = ProfileForm()
+    if request.method == "POST":
+        #formulier checken en opslaan
+        pass
+    else:
+        pass
+    context={
+        "profile_form":profile_form
+        }
     return render(request,"editProfile.html",context)
 
 

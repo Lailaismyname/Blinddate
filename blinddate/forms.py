@@ -3,8 +3,10 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
-from .models import *
+from .models import Profile
 
+
+# Form for User Registration
 class RegisterForm(UserCreationForm):
     username = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-field'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password','class': 'form-field'}))
@@ -16,3 +18,10 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username','first_name','last_name', 'email', 'password1', 'password2']
+
+
+# Form for Profile
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["age","country","city","gender","looking_for_gender","about_me","user_foto"]

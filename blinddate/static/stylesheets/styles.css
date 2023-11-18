@@ -13,14 +13,6 @@ font-family: 'Tangerine', cursive;
 font-family: 'Unica One', sans-serif;
 font-family: 'Vina Sans', sans-serif;
 */
-/* kleurenpallette 
-diep donker groen en donker paars schijnt mysterieus the omvatten
-English Violet                  #574D68
-Persian Green                   #1B998B
-Dark Green                      #00241B
-Sunset                          #FFCB77
-Drab dark brown                 #37371F
-*/
 /* optie 2 zwart/goud kleurrenpalette 
 donkerzwart         #0f0f0f
 donkergrijs         #292929
@@ -37,14 +29,23 @@ licht goud          #d8c690
     --goud: #CBB26A;
     --goud2: #be9e44;
     --lichtgoud:#d8c690;
+    --txt:#e8e4d7;
 }
 /* ~~~~~~~~~~~~~~~ Universal styles ~~~~~~~~~~~~~~~ */
 *{
     padding: 0px;
     margin: 0px;
 }
-.white-text{
-    color: white;
+.text-color{
+    color: var(--txt);
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    letter-spacing: 1px;
+}
+.txt-align-center{
+    text-align: center;
+}
+.txt-align-left{
+    text-align: left;
 }
 .mt30{
     /* mt staat voor margin top */
@@ -188,7 +189,43 @@ body{
 /* ~~~~~~~~~~~~~~~~~ Index Page ~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~ Profile Page ~~~~~~~~~~~~~~~~~ */
-.main-content{
-    color:white;
+.profile-page{
+    display: flex;
+    flex-direction: column;
+    padding: 21px 0;
+    background: linear-gradient(var(--donkergrijs),var(--grijs))
 }
-
+.profile-img-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.profile-img{
+    height: auto;
+    width: 80%;
+    border-radius: 20px;
+}
+.profile-info{
+    padding: 21px 12px;
+}
+.profile-info > p{
+    margin: 12px 0;
+}
+.profile-page > .wrapper{
+    padding: 0 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+/* ~~~~~~~~~~~~~~~~~ Edit Profile Page ~~~~~~~~~~~~~~~~~ */
+.edit-profile-page{
+    background: linear-gradient(var(--donkergrijs), var(--grijs));
+    min-height: 82vh;
+}
+.edit-profile-page > form{
+    display: flex;
+    flex-direction: column;
+}
+.edit-profile-page > form > input , select{
+    height: 30px;
+}
