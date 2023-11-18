@@ -3,9 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect,HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.http import Http404
 # Forms 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
+# Models
+from .models import User, Profile
 
 
 # Create your amazing views here.
@@ -68,9 +71,16 @@ def index(request):
 
 #  View for the Profile page 
 @login_required(login_url='login') 
-def profile(request):
-    context={}
-    return render(request,"profile.html",context)
+def profile(request,profile_id):
+    try:
+        profile_owner = Profile.objects.get(pk=profile_id)
+        print(profile_owner)
+        context={
+            "profile" : profile_owner
+        }
+        return render(request,"profile.html",context)
+    except: 
+        raise Http404("This profile does not exist.")
 
 
 #  View for the Edit Profile page 

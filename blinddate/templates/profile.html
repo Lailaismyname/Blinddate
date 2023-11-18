@@ -5,10 +5,11 @@
 {% include 'menucanvas.html' %}
     <div class="main-content">
         <div class="profile-card">
-            <img src="#" alt="profile foto of {{user.username}}">
+            <img src="{{profile.user_foto.url}}" alt="profile foto of {{profile}}">
+        <p>{{profile.user_foto}}</p>
         </div>
         <div>
-            <h2>{{user.username}}
+            <h2>{{profile_owner}}
         </div>
         </div>
 {% endblock %}
