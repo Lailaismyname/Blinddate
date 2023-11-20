@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, ImageField, FileInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
@@ -24,4 +24,6 @@ class RegisterForm(UserCreationForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ["age","country","city","gender","looking_for_gender","about_me","user_foto"]
+        user_img = ImageField(widget=FileInput)
+        # fields = ["age","country","city","gender","looking_for_gender","about_me","user_foto"]
+        exclude = ['clear']

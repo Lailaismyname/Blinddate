@@ -3,9 +3,27 @@
 
 {% block main %}
 {% include 'menucanvas.html' %}
-    <div class="edit-profile-page">
-        <form method="POST" action="" class="text-color">
-            {{profile_form}}
-        </form>
+    <div class="main-content">
+        <div class="base-container edit-profile-page">
+            <form method="POST" action="" class="text-color">
+                {% csrf_token %}
+                {{user}}
+                <label>Age</label>
+                {{profile_form.age}}
+                <label>Country</label>
+                {{profile_form.country}}
+                <label>City</label>
+                {{profile_form.city}}
+                <label>I am a:</label>
+                {{profile_form.gender}}
+                <label>Looking for a:</label>
+                {{profile_form.looking_for_gender}}
+                <label>About me</label>
+                {{profile_form.about_me}}
+                <label>Upload Profile Foto</label>
+                <input type="file" id="img" name="user_foto" accept="image/*">
+                <input type="submit" value="Save profile">
+            </form>
+        </div>
     </div>
 {% endblock %}

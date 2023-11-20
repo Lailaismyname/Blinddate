@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render,redirect,HttpResponse, HttpResponseRedirect
+from django.shortcuts import render,redirect,HttpResponse, HttpResponseRedirect,get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
 from django.http import Http404
@@ -73,26 +73,38 @@ def index(request):
 @login_required(login_url='login') 
 def profile(request,profile_id):
     try:
-        profile_owner = Profile.objects.get(pk=profile_id)
-        print(profile_owner)
+        profile = Profile.objects.get(pk=profile_id)
+        user = User.objects.get(username = profile.profile_owner) # is deze nodig?
         context={
-            "profile" : profile_owner
+            "profile" : profile,
+            "usermodel" : user
         }
         return render(request,"profile.html",context)
-    except: 
-        raise Http404("This profile does not exist.")
+    except Exception as err : 
+        raise Http404("Oops something went wrong, ", err)
 
 
 #  View for the Edit Profile page 
 @login_required(login_url='login') 
-def edit_profile(request):
+def edit_profile(request,profile_id):
     profile_form = ProfileForm()
+    profile = Profile.objects.get(pk=profile_id)
+    user = User.objects.get(username = profile.profile_owner)
     if request.method == "POST":
-        #formulier checken en opslaan
-        pass
+        profile_form = ProfileForm(request.POST, request.FILES)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.profile_owner = request.user  # Set the profile owner here
+            profile.save()
+            print("saved")
+            return redirect('profile')
+        else:
+            print(profile_form.errors)
     else:
-        pass
+        profile_form = ProfileForm(instance=profile)
     context={
+        "user" : user,
+        "profile" : profile,
         "profile_form":profile_form
         }
     return render(request,"editProfile.html",context)

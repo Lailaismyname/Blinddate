@@ -1,9 +1,5 @@
 !! Oke voor morgen
-- styling van de profile pagina maken 
-- edit profile pagina maken
-Step by step we getting there! :)
-- Uitvogelen hoe ik een lege regel kan toevoegen in de aboutme txt in de db models
-
+Ik was bezig met de edit form. Het probleem is dat de is_valid False retourneert. Dat komt omdat de profile_owner niet automatisch word meegeven met het form. Dus morgen hier een oplossing voor vinden. 
 
 
 
