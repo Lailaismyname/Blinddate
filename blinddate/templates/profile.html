@@ -6,18 +6,22 @@
     <div class="main-content">
         <div class="profile-page">
             <div class="wrapper">
-                <a href="{% url 'edit_profile' profile.id %}">
+                <a href="{% url 'edit_profile' user.id %}">
                     <img src="{% static 'img/edit.png' %}" class="medium-logo">
                 </a>
             </div>
             <p class="txt-align-center brand-text">{{profile.profile_owner}}</p>
             <div class="profile-img-wrapper">
-                <img src="{{profile.user_foto.url}}" alt="profile foto of {{profile}}" class="profile-img">
+                {% if hasProfileFoto %}
+                    <img src="{{ profile.user_foto.url }}" alt="profile photo of {{ profile }}" class="profile-img">
+                {% else %}
+                <img src="{% static 'img/user.png' %}" alt="profile photo of {{ profile }}" class="profile-img">
+                {% endif %}
             </div>
             <div class="profile-info text-color">
                 <p class="txt-align-center">{{profile.age}} years</p>
                 <p class="txt-align-center">{{profile.city}}, {{profile.country}}</p>
-                <p class="txt-align-left">{{profile.about_me}}</p>            
+                <p class="txt-align-left">{{profile.about_me}}</p>
             </div>
         </div>
     </div>

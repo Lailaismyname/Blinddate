@@ -9,6 +9,7 @@ class Profile(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
         ('non_binary', 'Non-Binary'),
+        ('all', 'All')
     ]
     profile_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="userprofile")
     date = models.DateTimeField(auto_now_add=True)

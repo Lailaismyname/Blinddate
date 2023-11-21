@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect,HttpResponse, HttpResponseRedirect,get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404,HttpResponseForbidden
 # Forms 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm, ProfileForm
@@ -51,8 +51,8 @@ def register_view(request):
                 if form.is_valid:
                     form.save()
                     return redirect("login")
-            except ValueError:
-                err = ValueError
+            except ValueError as err:
+                print(err)
 
         context = {
             "form": form,
@@ -71,43 +71,75 @@ def index(request):
 
 #  View for the Profile page 
 @login_required(login_url='login') 
-def profile(request,profile_id):
+def profile(request, user_id):
     try:
-        profile = Profile.objects.get(pk=profile_id)
-        user = User.objects.get(username = profile.profile_owner) # is deze nodig?
-        context={
-            "profile" : profile,
-            "usermodel" : user
+        # Check if user exists
+        user = get_object_or_404(User, id=user_id)
+        try:
+            profile = get_object_or_404(Profile, profile_owner=user)
+            # Check if user_foto exists in profile
+            hasProfileFoto = bool(profile.user_foto)
+        except Profile.DoesNotExist:
+            return redirect('create_profile', user_id=user_id)
+        context = {
+            "profile": profile,
+            "usermodel": user,
+            "hasProfileFoto" : hasProfileFoto
         }
-        return render(request,"profile.html",context)
-    except Exception as err : 
-        raise Http404("Oops something went wrong, ", err)
+        return render(request, "profile.html", context)
+    except Http404 as err:
+        return HttpResponseForbidden("This user does not exist")
+    except Exception as err:
+        raise Http404("Oops something went wrong, ", err) from err
 
 
 #  View for the Edit Profile page 
 @login_required(login_url='login') 
-def edit_profile(request,profile_id):
-    profile_form = ProfileForm()
-    profile = Profile.objects.get(pk=profile_id)
-    user = User.objects.get(username = profile.profile_owner)
+def edit_profile(request, user_id):
+    user = User.objects.get(id=user_id)
+    profile = get_object_or_404(Profile, profile_owner=user)
+    # Check if the logged-in user is the owner of the profile
+    if request.user != profile.profile_owner:
+        return HttpResponseForbidden("You don't have permission to edit this profile.")
+    user = User.objects.get(username=profile.profile_owner)
     if request.method == "POST":
-        profile_form = ProfileForm(request.POST, request.FILES)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
-            profile.profile_owner = request.user  # Set the profile owner here
             profile.save()
             print("saved")
-            return redirect('profile')
+            return redirect('profile', user_id=user_id)
         else:
             print(profile_form.errors)
     else:
         profile_form = ProfileForm(instance=profile)
-    context={
+    context = {
         "user" : user,
         "profile" : profile,
-        "profile_form":profile_form
-        }
-    return render(request,"editProfile.html",context)
+        "profile_form" : profile_form
+    }
+    return render(request, "editProfile.html", context)
+
+
+# View to create the profile for the user
+@login_required(login_url='login') 
+def create_profile(request,user_id):
+    user = User.objects.get(id=user_id)
+    create_form = ProfileForm()
+    if request.method == "POST":
+        create_form = ProfileForm(request.POST, request.FILES)
+        if create_form.is_valid():
+            profile = create_form.save(commit=False)
+            print(request.user, profile.profile_owner)
+            # check if the user creating the profile is also the user that is logged in.
+            if request.user != profile.profile_owner:
+                return HttpResponseForbidden("You don't have permission to edit this profile.")
+            profile.save()
+    context = {
+        "user": user,
+        "create_form" : create_form
+    }
+    return render(request, "createProfile.html", context)
 
 
 #  View for the Find love page 
