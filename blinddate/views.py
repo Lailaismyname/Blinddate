@@ -88,7 +88,7 @@ def profile(request, user_id):
         }
         return render(request, "profile.html", context)
     except Http404 as err:
-        return HttpResponseForbidden("This user does not exist")
+        return redirect('create_profile', user_id=user_id)
     except Exception as err:
         raise Http404("Oops something went wrong, ", err) from err
 
@@ -105,9 +105,10 @@ def edit_profile(request, user_id):
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
         if profile_form.is_valid():
+            # route to pic /static/media/profileImages/
+            print(request.FILES)
             profile = profile_form.save(commit=False)
             profile.save()
-            print("saved")
             return redirect('profile', user_id=user_id)
         else:
             print(profile_form.errors)
@@ -135,6 +136,7 @@ def create_profile(request,user_id):
             if request.user != profile.profile_owner:
                 return HttpResponseForbidden("You don't have permission to edit this profile.")
             profile.save()
+            return redirect('profile', user_id=user_id)
     context = {
         "user": user,
         "create_form" : create_form

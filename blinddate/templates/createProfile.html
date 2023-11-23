@@ -5,9 +5,11 @@
 {% include 'menucanvas.html' %}
     <div class="main-content">
         <div class="base-container create-profile-page edit-profile-page">
-            <form method="POST" action="" class="text-color">
+            <form method="POST" action="" class="text-color" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{user}}
+                <label>Upload Profile Foto</label>
+                <input type="file" id="img" name="user_foto" accept="image/*">
                 <input type="hidden" name="profile_owner" value="{{user.id}}"> 
                 <label>Age</label>
                 {{create_form.age}}
@@ -21,10 +23,11 @@
                 {{create_form.looking_for_gender}}
                 <label>About me</label>
                 {{create_form.about_me}}
-                <label>Upload Profile Foto</label>
-                <input type="file" id="img" name="user_foto" accept="image/*">
+                <label>Interests</label>
+                {{create_form.interests}}
+                <label>Hobby's</label>
+                {{create_form.hobbys}}
                 <input type="submit" value="Save profile" class="btn-style">
-                Lets make a profile!
             </form>
         </div>
     </div>

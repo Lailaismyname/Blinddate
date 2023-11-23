@@ -208,7 +208,7 @@ body{
     border-radius: 20px;
 }
 .profile-info{
-    padding: 21px 12px;
+    padding: 21px 21px;
 }
 .profile-info > p{
     margin: 12px 0;
@@ -217,6 +217,16 @@ body{
     padding: 0 12px;
     display: flex;
     justify-content: flex-end;
+}
+.about_me{
+    white-space: pre-line;
+}
+.inner-wrapper{
+    display:flex;
+    justify-content: space-evenly;
+}
+.profile-section-title{
+    font-size: 24px;
 }
 /* ~~~~~~~~~~~~~~~~~ Edit Profile Page ~~~~~~~~~~~~~~~~~ */
 .edit-profile-page{
@@ -230,3 +240,5 @@ body{
 .edit-profile-page > form > input , select{
     height: 30px;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~ Matches Page ~~~~~~~~~~~~~~~~~~~ */

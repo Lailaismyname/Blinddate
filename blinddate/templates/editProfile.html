@@ -5,9 +5,11 @@
 {% include 'menucanvas.html' %}
     <div class="main-content">
         <div class="base-container edit-profile-page">
-            <form method="POST" action="" class="text-color">
+            <form method="POST" action="" class="text-color" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{user}}
+                <label>Upload Profile Foto</label>
+                <input type="file" id="img" name="user_foto" accept="image/*">
                 <input type="hidden" name="profile_owner" value="{{user.id}}"> 
                 <label>Age</label>
                 {{profile_form.age}}
@@ -21,9 +23,11 @@
                 {{profile_form.looking_for_gender}}
                 <label>About me</label>
                 {{profile_form.about_me}}
-                <label>Upload Profile Foto</label>
-                <input type="file" id="img" name="user_foto" accept="image/*">
-                <input type="submit" value="Save profile">
+                <label>Interests</label>
+                {{profile_form.interests}}
+                <label>Hobby's</label>
+                {{profile_form.hobbys}}
+                <input type="submit" value="Save profile" class="btn-style">
             </form>
         </div>
     </div>
