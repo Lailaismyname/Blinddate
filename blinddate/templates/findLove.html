@@ -4,8 +4,24 @@
 {% block main %}
 {% include 'menucanvas.html' %}
     <div class="main-content">
-        <div class="find-love-wrapper text-color">LOVE IS BLIND!
-            
+        <div class="find-love-wrapper text-color" id="fl_user_profile">
+            <p class="txt-align-center brand-text" id="fl_username">USERNAME</p>
+            <div class="inner-wrapper text-color">
+                <p class="txt-align-center"><span id="fl_city">CITY</span>, <span id="fl_country">COUNTRY</span></p>
+                <p class="txt-align-center" id="fl_age">AGE</p>
+            </div>
+            <div class="profile-info text-color">
+                <h6 class="profile-section-title brand-text">About me</h6>
+                <p class="txt-align-left about_me" id="fl_about_me">ABOUT NE SECTION</p>
+                <h6 class="profile-section-title brand-text">Interests</h6>
+                <p class="txt-align-left interests" id="fl_interests">INTEREST SECTION</p>
+                <h6 class="profile-section-title brand-text">Hobby's</h6>
+                <p class="txt-align-left hobbys" id="fl_hobbys">HOBBY'S </p>
+            </div>        
         </div>
+        <div class="swipe-btn-wrapper">
+            <button class="btn-style" id="no-btn">NO</button>
+            <button class="btn-style" id="yes-btn">YES</button>
         </div>
+    </div>
 {% endblock %}

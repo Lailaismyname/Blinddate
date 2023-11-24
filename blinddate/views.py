@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect,HttpResponse, HttpResponseRedirect,get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
-from django.http import Http404,HttpResponseForbidden
+from django.http import Http404,HttpResponseForbidden, JsonResponse
 # Forms 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm, ProfileForm
@@ -147,7 +147,12 @@ def create_profile(request,user_id):
 #  View for the Find love page 
 @login_required(login_url='login') 
 def find_love(request):
-    context={}
+    profiles = Profile.objects.all()
+    print(profiles)
+
+    context={
+        "profiles" : profiles
+    }
     return render(request,"findLove.html",context)
 
 
@@ -170,3 +175,9 @@ def chats(request):
 def individual_chat(request):
     context={}
     return render(request,"individualChat.html",context)
+
+# View to fetch profiles, in order to be able to render it with Javascript
+@login_required(login_url='login') 
+def fetch_profiles(request):
+    profiles = list(Profile.objects.select_related('profile_owner').values('profile_owner__username','profile_owner_id', 'age', 'country', 'city', 'gender', 'looking_for_gender', 'about_me', 'interests', 'hobbys'))
+    return JsonResponse(profiles, safe=False)

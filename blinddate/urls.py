@@ -13,7 +13,8 @@ urlpatterns = [
     path("matches", views.matches, name="matches"),
     path("chats", views.chats, name="chats"),
     path("individual_chat", views.individual_chat, name="individual_chat"),
-    
+    # for fetch request:
+    path("fetch_profiles", views.fetch_profiles, name="fetch_profiles"),
 
 ]
 
