@@ -242,3 +242,14 @@ body{
 }
 
 /* ~~~~~~~~~~~~~~~~~~~ Matches Page ~~~~~~~~~~~~~~~~~~~ */
+
+
+/* ~~~~~~~~~~~~~~~~~~~ Find Love Page ~~~~~~~~~~~~~~~~~~~ */
+.swipe-btn-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swipe-btn-wrapper > button{
+    margin: 20px 10%;
+}

@@ -9,6 +9,8 @@
     </head>
 
     <body>
+        <input type="hidden" id="logged_in_username" value="{{user.username}}">
+        <input type="hidden" id="logged_in_id" value="{{user.id}}">
             {% if user.is_authenticated %}
             <header> 
                 <div class="brand-container mt30">
@@ -21,9 +23,6 @@
                     <li class="username-label">
                         {{user.username}}
                     </li>
-                    {% comment %} <li>
-                        <a href="{% url 'logout' %}">Logout</a>
-                    </li> {% endcomment %}
                     <li>
                         <img src="{%static 'img/menu.png' %}" alt="menu-selection" class="burger-menu-btn" id="menu-btn">
                     </li>
