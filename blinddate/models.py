@@ -32,7 +32,10 @@ class Profile(models.Model):
 
 
 class Match(models.Model):
-    pass
+    match_list_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="matchlist", null=True, blank=True)
+    matches = models.ManyToManyField(Profile)
+    def __str__(self):
+        return f"Matches for {self.match_list_owner}"
 
 class Chat(models.Model):
     pass

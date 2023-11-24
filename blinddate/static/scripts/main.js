@@ -129,4 +129,5 @@ function make_profile(profiles){
     - make sure the profile hasnt already been seen and swiped on
     - testen of alle genders goed gefiltered worden
     - en een melding geven als alle profiles geswiped zijn. 
+    -  als er ja geswiped word, updaten in database. Model ervoor maken
 */
