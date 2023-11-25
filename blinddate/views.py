@@ -1,14 +1,16 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect,HttpResponse, HttpResponseRedirect,get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
 from django.http import Http404,HttpResponseForbidden, JsonResponse
+from django.views.decorators.http import require_POST
 # Forms 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm, ProfileForm
 # Models
-from .models import User, Profile
+from .models import User, Profile, Match, Chat
 
 
 # Create your amazing views here.
@@ -147,13 +149,27 @@ def create_profile(request,user_id):
 #  View for the Find love page 
 @login_required(login_url='login') 
 def find_love(request):
+    # oke mischien kan ik beter de logica hierin doen. 
+    # krijg de profiel van de ingelogde gebruiker
+    # pak de voorkeuren van ingelogde gebruiker
+    # definieer een gefilterde matchlist.
+    # ga door matchlist heen en haal voorkeuren eruit en stop die in gefilterde matchlist
+    # paas gefilterde matchlist door aan context. 
+    # als er word geklikt dan submit ie een form
+    # doe if request.method post en handel dan af dat die profiel word toegevoegd aan de database.
+    # scrambled eggs, morgen nieuwe dag!
     profiles = Profile.objects.all()
-    print(profiles)
+    user = request.user
+    matchlist, created = Match.objects.get_or_create(match_list_owner=user)
+    if created:
+        pass
+    match_list = matchlist.matches.all()
 
-    context={
-        "profiles" : profiles
+    context = {
+        "profiles": profiles,
+        "matchlist" : match_list
     }
-    return render(request,"findLove.html",context)
+    return render(request, "findLove.html", context)
 
 
 #  View for the Matches page 
@@ -181,3 +197,8 @@ def individual_chat(request):
 def fetch_profiles(request):
     profiles = list(Profile.objects.select_related('profile_owner').values('profile_owner__username','profile_owner_id', 'age', 'country', 'city', 'gender', 'looking_for_gender', 'about_me', 'interests', 'hobbys'))
     return JsonResponse(profiles, safe=False)
+
+# View to add matches
+@login_required(login_url='login')
+def add_match(request, match_id):
+    pass

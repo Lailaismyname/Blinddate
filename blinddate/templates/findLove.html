@@ -12,7 +12,7 @@
             </div>
             <div class="profile-info text-color">
                 <h6 class="profile-section-title brand-text">About me</h6>
-                <p class="txt-align-left about_me" id="fl_about_me">ABOUT NE SECTION</p>
+                <p class="txt-align-left about_me" id="fl_about_me">ABOUT ME SECTION</p>
                 <h6 class="profile-section-title brand-text">Interests</h6>
                 <p class="txt-align-left interests" id="fl_interests">INTEREST SECTION</p>
                 <h6 class="profile-section-title brand-text">Hobby's</h6>
@@ -21,7 +21,18 @@
         </div>
         <div class="swipe-btn-wrapper">
             <button class="btn-style" id="no-btn"><img src="{% static 'img/cross.png' %}" alt="cross icon" class="medium-logo"></button>
-            <button class="btn-style" id="yes-btn"><img src="{% static 'img/love.png' %}" alt="heart icon"  class="medium-logo"></button>
+            <button class="btn-style" id="yes-btn"><img src="{% static 'img/love.png' %}" alt="heart icon"  class="medium-logo">{% csrf_token %}</button>
         </div>
+    </div>
+    <div class="text-color">
+    {% for profile in profiles %}
+    {{profile.profile_owner}}
+    {% endfor %}
+
+    // MATCHLIST //
+
+    {% for match in matchlist %}
+    {{match.profile_owner}}
+    {% endfor %}
     </div>
 {% endblock %}
