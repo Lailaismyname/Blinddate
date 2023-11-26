@@ -2,37 +2,51 @@
 {% load static %}
 
 {% block main %}
-{% include 'menucanvas.html' %}
-    <div class="main-content">
-        <div class="find-love-wrapper text-color" id="fl_user_profile">
-            <p class="txt-align-center brand-text" id="fl_username">USERNAME</p>
+  {% include 'menucanvas.html' %}
+  <div class="main-content">
+    {% if profiles %}
+      {% with first_profile=profiles.0 %}
+        <div class="find-love-containter">
+          <div class="find-love-wrapper text-color">
+            <p class="txt-align-center brand-text">{{ first_profile.profile_owner }}</p>
             <div class="inner-wrapper text-color">
-                <p class="txt-align-center"><span id="fl_city">CITY</span>, <span id="fl_country">COUNTRY</span></p>
-                <p class="txt-align-center" id="fl_age">AGE</p>
+              <p class="txt-align-center"><span>{{ first_profile.city }}</span>, <span>{{ first_profile.country }}</span></p>
+              <p class="txt-align-center">{{ first_profile.age }}</p>
             </div>
             <div class="profile-info text-color">
-                <h6 class="profile-section-title brand-text">About me</h6>
-                <p class="txt-align-left about_me" id="fl_about_me">ABOUT ME SECTION</p>
-                <h6 class="profile-section-title brand-text">Interests</h6>
-                <p class="txt-align-left interests" id="fl_interests">INTEREST SECTION</p>
-                <h6 class="profile-section-title brand-text">Hobby's</h6>
-                <p class="txt-align-left hobbys" id="fl_hobbys">HOBBY'S </p>
+              <h6 class="profile-section-title brand-text">About me</h6>
+              <p class="txt-align-left about_me">{{ first_profile.about_me }}</p>
+              <h6 class="profile-section-title brand-text">Interests</h6>
+              <p class="txt-align-left interests">{{ first_profile.interests }}</p>
+              <h6 class="profile-section-title brand-text">Hobbies</h6>
+              <p class="txt-align-left hobbys">{{ first_profile.hobbys }}</p>
             </div>        
+          </div>
+          <div class="text-color"> TEST  {{first_profile.profile_owner_id}}  TEST </div>
+          <div class="swipe-btn-wrapper">
+            <form method="POST" action="{% url 'adjust_matchlist_no' %}">
+                <input type="hidden" name="form_id" value="no">
+                <input type="hidden" name="profile" value="{{first_profile.profile_owner_id}}">
+              {% csrf_token %}
+              <button class="btn-style">
+                <img src="{% static 'img/cross.png' %}" alt="cross icon" class="medium-logo">
+              </button>
+            </form>
+            <form method="POST" action="{% url 'adjust_matchlist_yes' %}">
+                <input type="hidden" name="form_id" value="yes">
+                <input type="hidden" name="profile" value="{{first_profile.profile_owner_id}}">
+              {% csrf_token %}
+              <button class="btn-style">
+                <img src="{% static 'img/love.png' %}" alt="heart icon" class="medium-logo">
+              </button>
+            </form>
+          </div>
         </div>
-        <div class="swipe-btn-wrapper">
-            <button class="btn-style" id="no-btn"><img src="{% static 'img/cross.png' %}" alt="cross icon" class="medium-logo"></button>
-            <button class="btn-style" id="yes-btn"><img src="{% static 'img/love.png' %}" alt="heart icon"  class="medium-logo">{% csrf_token %}</button>
-        </div>
+      {% endwith %}
+      {% else %}
+      <div class="text-color">
+        You swiped through all the profiles, perhaps you are being too picky 
     </div>
-    <div class="text-color">
-    {% for profile in profiles %}
-    {{profile.profile_owner}}
-    {% endfor %}
-
-    // MATCHLIST //
-
-    {% for match in matchlist %}
-    {{match.profile_owner}}
-    {% endfor %}
-    </div>
+    {% endif %}
+  </div>
 {% endblock %}

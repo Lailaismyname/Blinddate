@@ -15,7 +15,8 @@ urlpatterns = [
     path("individual_chat", views.individual_chat, name="individual_chat"),
     # for fetch requests:
     path("fetch_profiles", views.fetch_profiles, name="fetch_profiles"),
-    path("add_match/<int:match_id>", views.add_match, name="add_match"),
+    path("adjust_matchlist_no", views.adjust_matchlist_no, name="adjust_matchlist_no"),
+    path("adjust_matchlist_yes", views.adjust_matchlist_yes, name="adjust_matchlist_yes"),
 ]
 
 # path("", views., name=""),

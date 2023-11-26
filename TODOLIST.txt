@@ -1,0 +1,14 @@
+!! Oke voor morgen
+-- als er op de find love page word geklikt, zonder dat er een profiel is aangemaakt krijg je foutpagina.
+   dat moet gefixed worden
+
+Beginnen aan de chat pagina
+  - Hoe wil ik dit gaan vormgeven?
+  - geen page refresh bij het chatten.
+  - model heeft een counter nodig voor aantal uitgewisselde berichten
+
+
+
+De chat pagina moet nog gemaakt worden, met de bijbehorende model.         
+        ik wil na x aantal chats de optie laten verschijnen om een foto uit te wisselen.
+        gebruiker mag kiezen hoeveel berichten uitwisselen voor de foto uitwisseling. opties 25, 50, 100 of 250 zoiets?

@@ -33,7 +33,8 @@ class Profile(models.Model):
 
 class Match(models.Model):
     match_list_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="matchlist", null=True, blank=True)
-    matches = models.ManyToManyField(Profile)
+    matches = models.ManyToManyField(Profile, related_name="matchlist")
+    not_match_but_seen = models.ManyToManyField(Profile, related_name="not_match_but_seen", blank=True)
     def __str__(self):
         return f"Matches for {self.match_list_owner}"
 

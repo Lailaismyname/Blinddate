@@ -250,6 +250,6 @@ body{
     justify-content: center;
     align-items: center;
 }
-.swipe-btn-wrapper > button{
+.swipe-btn-wrapper > form{
     margin: 20px 10%;
 }

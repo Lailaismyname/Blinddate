@@ -149,27 +149,65 @@ def create_profile(request,user_id):
 #  View for the Find love page 
 @login_required(login_url='login') 
 def find_love(request):
-    # oke mischien kan ik beter de logica hierin doen. 
-    # krijg de profiel van de ingelogde gebruiker
-    # pak de voorkeuren van ingelogde gebruiker
-    # definieer een gefilterde matchlist.
-    # ga door matchlist heen en haal voorkeuren eruit en stop die in gefilterde matchlist
-    # paas gefilterde matchlist door aan context. 
-    # als er word geklikt dan submit ie een form
-    # doe if request.method post en handel dan af dat die profiel word toegevoegd aan de database.
-    # scrambled eggs, morgen nieuwe dag!
+    # get all the necesary data surrounding the profiles. 
     profiles = Profile.objects.all()
     user = request.user
-    matchlist, created = Match.objects.get_or_create(match_list_owner=user)
+    user_profile = Profile.objects.get(profile_owner=user)
+    user_gender = user_profile.gender
+    user_looking_for = user_profile.looking_for_gender
+    match, created = Match.objects.get_or_create(match_list_owner=user)
     if created:
         pass
-    match_list = matchlist.matches.all()
 
+    filtered_profiles = []
+    match_list = match.matches.all()
+    seen_list = match.not_match_but_seen.all()
+    for profile in profiles:
+        # Check if profile has right gender, needs to be adjusted to take into account all preferences!!
+        if profile.gender == user_looking_for:
+        # check if profile is not already a match
+            if profile not in match_list:
+                # and check if it is not already been seen
+                if profile not in seen_list:
+                    filtered_profiles.append(profile)
+    #print(filtered_profiles)
     context = {
-        "profiles": profiles,
+        "profiles": filtered_profiles,
         "matchlist" : match_list
     }
     return render(request, "findLove.html", context)
+
+# View to make adjustments to Match
+@login_required(login_url='login') 
+def adjust_matchlist_no(request):
+    if request.method == "POST":
+        viewed_profile = request.POST.get("profile")
+        print(viewed_profile)
+        # profile = Profile.objects.get(profile_owner=viewed_profile)
+        logged_in_user = request.user
+        match, created = Match.objects.get_or_create(match_list_owner=logged_in_user)
+        if created:
+            pass
+        seen_list = match.not_match_but_seen.all()
+        if viewed_profile not in seen_list:
+            profile = Profile.objects.get(profile_owner=viewed_profile)
+            match.not_match_but_seen.add(profile)
+    return redirect('find_love')
+
+@login_required(login_url='login') 
+def adjust_matchlist_yes(request):
+    if request.method == "POST":
+        viewed_profile = request.POST.get("profile")
+        logged_in_user = request.user
+        match, created = Match.objects.get_or_create(match_list_owner=logged_in_user)
+        if created:
+            pass
+        seen_list = match.matches.all()
+        if viewed_profile not in seen_list:
+            profile = Profile.objects.get(profile_owner=viewed_profile)
+            match.matches.add(profile)
+    return redirect('find_love')
+
 
 
 #  View for the Matches page 
@@ -197,8 +235,3 @@ def individual_chat(request):
 def fetch_profiles(request):
     profiles = list(Profile.objects.select_related('profile_owner').values('profile_owner__username','profile_owner_id', 'age', 'country', 'city', 'gender', 'looking_for_gender', 'about_me', 'interests', 'hobbys'))
     return JsonResponse(profiles, safe=False)
-
-# View to add matches
-@login_required(login_url='login')
-def add_match(request, match_id):
-    pass
