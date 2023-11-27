@@ -213,7 +213,25 @@ def adjust_matchlist_yes(request):
 #  View for the Matches page 
 @login_required(login_url='login') 
 def matches(request):
-    context={}
+    logged_in_user = User.objects.get(username=request.user)
+    match, created = Match.objects.get_or_create(match_list_owner=logged_in_user)
+    if created:
+        pass
+    liked_profiles =  match.matches.all()
+    for profile in liked_profiles:
+        # get that users match list. Check if loggged in user is in matchlist
+        profile_user = User.objects.get(username=profile)
+        profile_match, created = Match.objects.get_or_create(match_list_owner=profile_user)
+        for match in profile_match.matches.all():
+            # print(profile, " is matched with ", match)
+            print(profile, "is matched with...",match,  str(match) == str(logged_in_user))
+            # print("type of loggedinuser ",type(logged_in_user)) 
+            print("type of match ",type(match))
+        pass
+    matches = ""
+    context={
+        "matches" : matches
+    }
     return render(request,"matches.html",context)
 
 
