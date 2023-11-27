@@ -137,7 +137,7 @@ body{
 .menu-canvas-item{
     cursor: pointer;
     border: 2px solid var(--grijs);
-    height: 13.3vh;
+    height: 16vh;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -242,8 +242,16 @@ body{
 }
 
 /* ~~~~~~~~~~~~~~~~~~~ Matches Page ~~~~~~~~~~~~~~~~~~~ */
-
-
+.match-info{
+    text-align: center;
+    padding: 20px 20px;
+}
+.match-item{
+    border: 2px solid var(--grijs);
+    padding: 20px 20px;
+    width: 100vw;
+    list-style-type: none;
+}
 /* ~~~~~~~~~~~~~~~~~~~ Find Love Page ~~~~~~~~~~~~~~~~~~~ */
 .swipe-btn-wrapper{
     display: flex;

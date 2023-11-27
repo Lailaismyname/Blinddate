@@ -5,6 +5,11 @@
 {% block main %}
 {% include 'menucanvas.html' %}
     <div class="main-content">
-        <p class="white-txt"> hello from the individual chat page </p>
+        <div class="chat-head">
+            <img src="{{ match_profile.user_foto.url }}" alt="profile photo of {{ match }}" class="profile-img">
+            <p class="text-color"> Chat with {{match}}</p>
         </div>
+        <ul class="chat-box">
+        </ul>
+    </div>
 {% endblock %}

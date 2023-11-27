@@ -24,7 +24,7 @@ class Profile(models.Model):
     about_me = models.TextField(max_length=1500)
     interests = models.TextField(max_length=150, blank=True, null=True)
     hobbys = models.TextField(max_length=150, blank=True, null=True)
-    user_foto = models.ImageField(upload_to="blinddate/static/media/profileImages/", blank=True, null=True)
+    user_foto = models.ImageField(upload_to="profileImages/", blank=True, null=True)
 
     def __str__(self):
         return f"{self.profile_owner}"

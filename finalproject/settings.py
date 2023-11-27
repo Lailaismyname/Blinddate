@@ -127,8 +127,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Adding settings for the imagefield model 
 # MEDIA ROOT is the path to where the files are located
-MEDIA_ROOT = ""
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA URL is the path that will be accessed through the browser to find the
-MEDIA_URL = ""
+MEDIA_URL = "/media/"
 
 

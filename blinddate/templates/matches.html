@@ -5,6 +5,11 @@
 {% block main %}
 {% include 'menucanvas.html' %}
     <div class="main-content">
-        <p class="text-color"> hello from the matches page </p>
-        </div>
+        <p class="text-color match-info">Click on your match to start chatting</p>
+        {% for match in matches %}
+            <li class="match-item">
+                <a href="{% url 'chat' match %}" class="text-color">{{match}}</a>
+            </li>
+        {% endfor %}
+    </div>
 {% endblock %}

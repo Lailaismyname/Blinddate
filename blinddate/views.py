@@ -218,17 +218,14 @@ def matches(request):
     if created:
         pass
     liked_profiles =  match.matches.all()
+    matches = []
     for profile in liked_profiles:
         # get that users match list. Check if loggged in user is in matchlist
         profile_user = User.objects.get(username=profile)
         profile_match, created = Match.objects.get_or_create(match_list_owner=profile_user)
         for match in profile_match.matches.all():
-            # print(profile, " is matched with ", match)
-            print(profile, "is matched with...",match,  str(match) == str(logged_in_user))
-            # print("type of loggedinuser ",type(logged_in_user)) 
-            print("type of match ",type(match))
-        pass
-    matches = ""
+            if str(match) == str(logged_in_user):
+                matches.append(profile)
     context={
         "matches" : matches
     }
@@ -237,16 +234,16 @@ def matches(request):
 
 #  View for the Chats page 
 @login_required(login_url='login') 
-def chats(request):
-    context={}
-    return render(request,"chats.html",context)
+def chat(request, match_name):
+    match = User.objects.get(username=match_name)
+    print(match)
+    match_profile = Profile.objects.get(profile_owner=match)
+    context={
+        "match" : match,
+        "match_profile" : match_profile
+    }
+    return render(request,"chat.html",context)
 
-
-#  View for the individual Chat page 
-@login_required(login_url='login') 
-def individual_chat(request):
-    context={}
-    return render(request,"individualChat.html",context)
 
 # View to fetch profiles, in order to be able to render it with Javascript
 @login_required(login_url='login') 

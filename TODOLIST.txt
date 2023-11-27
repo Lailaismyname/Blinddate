@@ -1,13 +1,24 @@
 !! Oke voor morgen
 -- als er op de find love page word geklikt, zonder dat er een profiel is aangemaakt krijg je foutpagina.
    dat moet gefixed worden
+-- als je de individuele chat pagina de naam van de gebruiker in de url zet
+   dan rendered de pagina ook als er geen match en dus geen chat is. 
+   Dit moet een foutmelding produceren. oops nothing here 
+
 
 Beginnen aan de chat pagina
   - Hoe wil ik dit gaan vormgeven?
   - geen page refresh bij het chatten.
   - model heeft een counter nodig voor aantal uitgewisselde berichten
+  - wel een form
 
 
+ik denk met de foto reveal wat ik wil doen, is 2 fotos over elkaar heen.
+Dan de opacity aanpassen. 
+Dus per 10 uitgewisselde berichten veranderd de opacity met 0.1. 
+De gebruikersfoto start op onzichtbaar en gaat langzaam naar zichtbaar.
+en de overlay is zichtbaar en gaat langzaam naar onzichtbaar. 
+Of gewoon alleen de overlay langzaam onzichtbaar maken, moet ff testen nog
 
 
 
