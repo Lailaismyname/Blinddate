@@ -19,7 +19,7 @@
                 {% if hasProfileFoto %}
                     <img src="{{ profile.user_foto.url }}" alt="profile photo of {{ profile }}" class="profile-img">
                 {% else %}
-                <img src="{% static 'img/user.png' %}" alt="No profile photo available" class="profile-img">
+                    <img src="{% static 'img/user.png' %}" alt="No profile photo available" class="profile-img">
                 {% endif %}
             </div>
             <div class="profile-info text-color">

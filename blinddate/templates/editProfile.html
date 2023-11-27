@@ -7,7 +7,11 @@
         <div class="base-container edit-profile-page">
             <form method="POST" action="" class="text-color" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{user}}
+                {% if profile_picture %}
+                <div class="edit-img-wrapper">
+                    <img src="{{ profile.user_foto.url }}" alt="profile photo of {{ match }}" class="profile-img">
+                </div>
+                {% endif %}
                 <label>Upload Profile Foto</label>
                 <input type="file" id="img" name="user_foto" accept="image/*">
                 <input type="hidden" name="profile_owner" value="{{user.id}}"> 

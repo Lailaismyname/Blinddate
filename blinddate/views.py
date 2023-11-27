@@ -100,6 +100,7 @@ def profile(request, user_id):
 def edit_profile(request, user_id):
     user = User.objects.get(id=user_id)
     profile = get_object_or_404(Profile, profile_owner=user)
+    profile_picture = bool(profile.user_foto)
     # Check if the logged-in user is the owner of the profile
     if request.user != profile.profile_owner:
         return HttpResponseForbidden("You don't have permission to edit this profile.")
@@ -119,7 +120,8 @@ def edit_profile(request, user_id):
     context = {
         "user" : user,
         "profile" : profile,
-        "profile_form" : profile_form
+        "profile_form" : profile_form,
+        "profile_picture" : profile_picture
     }
     return render(request, "editProfile.html", context)
 
@@ -238,9 +240,11 @@ def chat(request, match_name):
     match = User.objects.get(username=match_name)
     print(match)
     match_profile = Profile.objects.get(profile_owner=match)
+    has_picture = bool(match_profile.user_foto)
     context={
         "match" : match,
-        "match_profile" : match_profile
+        "match_profile" : match_profile,
+        "has_picture": has_picture
     }
     return render(request,"chat.html",context)
 

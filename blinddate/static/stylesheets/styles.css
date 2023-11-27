@@ -240,7 +240,21 @@ body{
 .edit-profile-page > form > input , select{
     height: 30px;
 }
-
+.edit-img-wrapper{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ~~~~~~~~~~~~~~~~~~~ Find Love Page ~~~~~~~~~~~~~~~~~~~ */
+.swipe-btn-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swipe-btn-wrapper > form{
+    margin: 20px 10%;
+}
 /* ~~~~~~~~~~~~~~~~~~~ Matches Page ~~~~~~~~~~~~~~~~~~~ */
 .match-info{
     text-align: center;
@@ -252,12 +266,13 @@ body{
     width: 100vw;
     list-style-type: none;
 }
-/* ~~~~~~~~~~~~~~~~~~~ Find Love Page ~~~~~~~~~~~~~~~~~~~ */
-.swipe-btn-wrapper{
+/* ~~~~~~~~~~~~~~~~~~~~~ Chat Page ~~~~~~~~~~~~~~~~~~~~~ */
+.chat-head{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
-.swipe-btn-wrapper > form{
-    margin: 20px 10%;
+.chat-box{
+    border: 2px solid green;
+    min-height: 100px;
 }
