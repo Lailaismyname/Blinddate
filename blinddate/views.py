@@ -263,6 +263,7 @@ def chat(request, match_name):
     # get messages related to receiver_chat       
     incoming_messages = Message.objects.filter(chat=receiver_chat)
     all_messages = sorted(chain(outgoing_messages, incoming_messages), key=lambda message: message.timestamp)
+    all_messages.reverse()
     has_picture = bool(match_profile.user_foto)
     
     context={
@@ -288,8 +289,7 @@ def send_chat(request):
         chat, created = Chat.objects.get_or_create(sender=sender, receiver=receiver)
         message = Message(chat=chat, message=message)
         message.save()
-
-    match_name = "peaches" 
+    match_name = receiver 
     return redirect(f"chat/{match_name}")
 
 

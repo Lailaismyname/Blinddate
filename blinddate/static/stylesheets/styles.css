@@ -317,3 +317,12 @@ body{
     min-height: 100px;
     resize: none;
 }
+.profile-img-small{
+    height: auto;
+    width: 50%;
+    border-radius: 20px;
+}
+#match-foto{
+    opacity: 0.0;
+    filter: blur(50px);
+}

@@ -13,7 +13,7 @@ async function main(){
     chat_picture = document.querySelector("#match-foto");
     chat_picture.style.opacity = 0.1;
     chat_picture.style.filter = `blur(50px)`;
-
+    console.log(exchanged_messages)
     // switch case for chatbox
     switch (true) {
         case exchanged_messages <= 10:
@@ -37,6 +37,11 @@ async function main(){
             chat_picture.style.filter = `blur(10px)`;
           break;
         case exchanged_messages <= 60:
+            chat_picture.style.opacity = 1;
+            chat_picture.style.filter = `blur(0px)`;
+          break;
+          case exchanged_messages > 60:
+            chat_picture.style.opacity = 1;
             chat_picture.style.filter = `blur(0px)`;
           break;
         default:
