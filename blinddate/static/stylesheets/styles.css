@@ -273,6 +273,35 @@ body{
     justify-content: center;
 }
 .chat-box{
-    border: 2px solid green;
     min-height: 100px;
+    list-style-type: none;
+}
+.chat-msg{
+    border: 2px solid var(--grijs);
+    margin: 20px;
+}
+.chat-topline{
+    background: var(--grijs);
+    display: flex;
+    justify-content: space-between;
+}
+.chat-txt{
+    padding: 20px;
+}
+.chat-username{
+    font-size: 16px;
+}
+.chat-send-msg{
+    padding: 30px 20px 0 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--grijs);
+    border-radius: 5px;
+}
+.chat-send-msg > textarea, #id_message{
+    min-width: 81vw;
+    min-height: 100px;
+    resize: none;
 }

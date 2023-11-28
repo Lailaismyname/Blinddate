@@ -40,10 +40,11 @@ class Match(models.Model):
 
 class Chat(models.Model):
     id = models.AutoField(primary_key=True)
-    sender = models.OneToOneField(User, on_delete=models.CASCADE, related_name="chat_sender", blank=True, null=True)
-    receiver = models.OneToOneField(User, on_delete=models.CASCADE, related_name="chat_receiver", blank=True, null=True)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="chat_sender")
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="chat_receiver")
     def __str__(self):
-        return f"msg from {self.sender} to {self.receiver}"
+        return f"connection between {self.sender} and {self.receiver}"
+
     
 class Message(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name="chat_message")

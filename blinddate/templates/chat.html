@@ -8,12 +8,27 @@
         <p class="text-color txt-align-center"> Chat with <span class="brand-text">{{match}}</span></p>
         <div class="chat-head">
             {% if has_picture %}
-                <img src="{{ match_profile.user_foto.url }}" alt="profile photo of {{ match }}" class="profile-img">
+                <img src="{{ match_profile.user_foto.url }}" alt="profile photo of {{ match }}" class="profile-img" id="match-foto" draggable="false">
             {% else %}
             <img src="{% static 'img/user.png' %}" alt="No profile photo available" class="profile-img">
             {% endif %}
         </div>
-        <ul class="chat-box">
+        <ul class="chat-box" id="chat-box">
+            {%for msg in messages %}
+                <li class="text-color chat-msg">
+                    <p class="chat-topline">
+                        <span class="chat-username brand-text">{{ msg.chat.sender.username }}</span> 
+                        <span class="text-color">{{ msg.timestamp }}<span>
+                    </p>
+                    <p class="chat-txt">{{ msg.message }}</p>
+            {% endfor %}
         </ul>
+        <form method="POST" action="{% url 'send_chat' %}" class="chat-send-msg">
+            {% csrf_token %}
+            <input type="hidden" name="sender" value="{{sender}}">
+            <input type="hidden" name="receiver" value="{{receiver}}">
+            <textarea name="message"></textarea>
+            <input type="submit" name="send-chat" value="send" class="btn-style">
+        </form>
     </div>
 {% endblock %}

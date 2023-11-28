@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Message
 
 
 # Form for User Registration
@@ -27,3 +27,10 @@ class ProfileForm(ModelForm):
         user_img = ImageField(widget=FileInput)
         # fields = ["age","country","city","gender","looking_for_gender","about_me","user_foto"]
         exclude = ['clear']
+
+# Form for Chat Messages
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ["message"]
+        labels = {"message": " "}

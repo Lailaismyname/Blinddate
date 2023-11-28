@@ -8,9 +8,11 @@ from django.http import Http404,HttpResponseForbidden, JsonResponse
 from django.views.decorators.http import require_POST
 # Forms 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterForm, ProfileForm
+from .forms import RegisterForm, ProfileForm, MessageForm
 # Models
 from .models import User, Profile, Match, Chat, Message
+# for chaining: 
+from itertools import chain
 
 
 # Create your amazing views here.
@@ -151,27 +153,32 @@ def create_profile(request,user_id):
 #  View for the Find love page 
 @login_required(login_url='login') 
 def find_love(request):
-    # get all the necesary data surrounding the profiles. 
-    profiles = Profile.objects.all()
-    user = request.user
-    user_profile = Profile.objects.get(profile_owner=user)
-    user_gender = user_profile.gender
-    user_looking_for = user_profile.looking_for_gender
-    match, created = Match.objects.get_or_create(match_list_owner=user)
-    if created:
-        pass
+    try:
+        # get all the necesary data surrounding the profiles. 
+        profiles = Profile.objects.all()
+        user = request.user
+        user_profile = Profile.objects.get(profile_owner=user)
+        user_gender = user_profile.gender
+        user_looking_for = user_profile.looking_for_gender
+        match, created = Match.objects.get_or_create(match_list_owner=user)
+        if created:
+            pass
 
-    filtered_profiles = []
-    match_list = match.matches.all()
-    seen_list = match.not_match_but_seen.all()
-    for profile in profiles:
-        # Check if profile has right gender, needs to be adjusted to take into account all preferences!!
-        if profile.gender == user_looking_for:
-        # check if profile is not already a match
-            if profile not in match_list:
-                # and check if it is not already been seen
-                if profile not in seen_list:
-                    filtered_profiles.append(profile)
+        filtered_profiles = []
+        match_list = match.matches.all()
+        seen_list = match.not_match_but_seen.all()
+        for profile in profiles:
+            # Check if profile has right gender, needs to be adjusted to take into account all preferences!!
+            if profile.gender == user_looking_for:
+            # check if profile is not already a match
+                if profile not in match_list:
+                    # and check if it is not already been seen
+                    if profile not in seen_list:
+                        filtered_profiles.append(profile)
+    except Profile.DoesNotExist:
+        user_id = request.user.id
+        print(user_id)
+        return redirect("create_profile", user_id)
     #print(filtered_profiles)
     context = {
         "profiles": filtered_profiles,
@@ -184,8 +191,6 @@ def find_love(request):
 def adjust_matchlist_no(request):
     if request.method == "POST":
         viewed_profile = request.POST.get("profile")
-        print(viewed_profile)
-        # profile = Profile.objects.get(profile_owner=viewed_profile)
         logged_in_user = request.user
         match, created = Match.objects.get_or_create(match_list_owner=logged_in_user)
         if created:
@@ -237,16 +242,48 @@ def matches(request):
 #  View for the Chats page 
 @login_required(login_url='login') 
 def chat(request, match_name):
-    match = User.objects.get(username=match_name)
-    print(match)
-    match_profile = Profile.objects.get(profile_owner=match)
+    msg_form = MessageForm()
+    sender = request.user
+    receiver = User.objects.get(username=match_name)
+    match_profile = Profile.objects.get(profile_owner=receiver)
+    # get chat if it exists
+    sender_chat, created = Chat.objects.get_or_create(sender=sender, receiver=receiver)
+    receiver_chat, created = Chat.objects.get_or_create(sender=receiver, receiver=sender)
+    print(sender_chat)
+    # get messages related to send_chat
+    outgoing_messages = Message.objects.filter(chat=sender_chat)
+    # get messages related to receiver_chat       
+    incoming_messages = Message.objects.filter(chat=receiver_chat)
+    all_messages = sorted(chain(outgoing_messages, incoming_messages), key=lambda message: message.timestamp)
     has_picture = bool(match_profile.user_foto)
+    
     context={
-        "match" : match,
+        "match" : receiver,
         "match_profile" : match_profile,
-        "has_picture": has_picture
+        "has_picture": has_picture,
+        "messages" : all_messages,
+        "sender" : sender,
+        "receiver": receiver,
+        "msg_form": msg_form
     }
     return render(request,"chat.html",context)
+
+
+#  View for sending Chats 
+@login_required(login_url='login') 
+def send_chat(request):
+    if request.method == "POST":
+        sender = request.user
+        match = request.POST.get('receiver')
+        receiver = User.objects.get(username=match)
+        message = request.POST.get('message')
+        chat, created = Chat.objects.get_or_create(sender=sender, receiver=receiver)
+        message = Message(chat=chat, message=message)
+        message.save()
+
+    match_name = "peaches" 
+    return redirect(f"chat/{match_name}")
+
 
 
 # View to fetch profiles, in order to be able to render it with Javascript
