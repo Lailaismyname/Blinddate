@@ -127,17 +127,18 @@ body{
     background: linear-gradient(var(--donkerzwart),var(--donkergrijs),var(--grijs)); 
     display: none;
     position: sticky;
-    height: 100%;
+    height: 100vh;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 2;
+    overflow: hidden;
 }
 .menu-canvas-item{
     cursor: pointer;
     border: 2px solid var(--grijs);
-    height: 16vh;
+    height: 18%;
     text-align: center;
     display: flex;
     justify-content: center;
