@@ -188,7 +188,19 @@ body{
     color: white;
 }
 /* ~~~~~~~~~~~~~~~~~ Index Page ~~~~~~~~~~~~~~~~~ */
+.how-it-works,.your-personal-space{
+    padding: 20px;
+    list-style-type: none;
+}
+.how-it-works > li, .your-personal-space > li,
+.how-it-works > li > h3, .your-personal-space > li > h3{
+    margin: 20px;
+}
 
+.intro-quote{
+    border-bottom: 2px solid var(--grijs);
+    margin: 20px;
+}
 /* ~~~~~~~~~~~~~~~~~ Profile Page ~~~~~~~~~~~~~~~~~ */
 .profile-page{
     display: flex;

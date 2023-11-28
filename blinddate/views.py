@@ -168,9 +168,17 @@ def find_love(request):
         match_list = match.matches.all()
         seen_list = match.not_match_but_seen.all()
         for profile in profiles:
+            # skip if its the users profile
+            if profile == user_profile:
+                continue
             # Check if profile has right gender, needs to be adjusted to take into account all preferences!!
             if profile.gender == user_looking_for:
             # check if profile is not already a match
+                if profile not in match_list:
+                    # and check if it is not already been seen
+                    if profile not in seen_list:
+                        filtered_profiles.append(profile)
+            if user_looking_for == "all":
                 if profile not in match_list:
                     # and check if it is not already been seen
                     if profile not in seen_list:
