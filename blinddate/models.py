@@ -39,4 +39,15 @@ class Match(models.Model):
         return f"Matches for {self.match_list_owner}"
 
 class Chat(models.Model):
-    pass
+    id = models.AutoField(primary_key=True)
+    sender = models.OneToOneField(User, on_delete=models.CASCADE, related_name="chat_sender", blank=True, null=True)
+    receiver = models.OneToOneField(User, on_delete=models.CASCADE, related_name="chat_receiver", blank=True, null=True)
+    def __str__(self):
+        return f"msg from {self.sender} to {self.receiver}"
+    
+class Message(models.Model):
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name="chat_message")
+    message = models.TextField(max_length=400)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.chat}, {self.message}"

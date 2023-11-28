@@ -10,7 +10,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm, ProfileForm
 # Models
-from .models import User, Profile, Match, Chat
+from .models import User, Profile, Match, Chat, Message
 
 
 # Create your amazing views here.

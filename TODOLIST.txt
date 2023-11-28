@@ -4,13 +4,11 @@
 -- als je de individuele chat pagina de naam van de gebruiker in de url zet
    dan rendered de pagina ook als er geen match en dus geen chat is. 
    Dit moet een foutmelding produceren. oops nothing here 
--- edit form foto centeren
 
 
 Beginnen aan de chat pagina
-  - Hoe wil ik dit gaan vormgeven?
   - geen page refresh bij het chatten.
-  - model heeft een counter nodig voor aantal uitgewisselde berichten
+  - berichten counter can met js. 
   - wel een form
 
 
