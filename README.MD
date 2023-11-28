@@ -1,9 +1,14 @@
 # About This Project
 
 Welcome to Blind Date – a revolutionary approach to online dating that aims to transcend the superficial nature often associated with traditional dating apps. In a world where first impressions are heavily influenced by profile pictures, Blind Date strives to shift the focus to meaningful connections based on personality and shared interests.
-Purpose and Vision
+
+# Purpose and Vision
 
 Blind Date was conceived with the intention of fostering genuine connections by encouraging users to make decisions based on the content of each other's profiles rather than relying on visual appearance alone. By allowing users to swipe on profile text, we hope to create a dating environment that values personality, wit, and shared values, promoting a deeper understanding between individuals.
+
+# What problem does this app solve?
+It solves online dating frustrations.
+Ever notice how some folks grumble about online dating? Well, two things kept popping up: guys feeling like they're not getting enough matches, and ladies getting bugged by guys who want to skip the whole "let's chat a bit first" thing before suggesting a meetup. Our app? It's basically your cool wing-person, sorting out these issues so everyone can enjoy a smoother online dating ride.
 
 ## Key Features
 
