@@ -1,9 +1,7 @@
 # Link to video Presentation
 https://youtu.be/IRqcqr6nOpA
 
-[![Video presentation blinddate]  
-(https://raw.githubusercontent.com/Lailaismyname/Blinddate/main/appimg.png)] 
-(https://www.youtube.com/watch?v=IRqcqr6nOpA)  
+[<img src="https://raw.githubusercontent.com/Lailaismyname/Blinddate/main/appimg.png" width="50%">](https://www.youtube.com/watch?v=IRqcqr6nOpA)
 
 # About This Project
 
