@@ -1,3 +1,6 @@
+# Link to video Presentation
+https://www.youtube.com/watch?v=I-UQtqwo7u4
+
 # About This Project
 
 Welcome to Blind Date – a revolutionary approach to online dating that aims to transcend the superficial nature often associated with traditional dating apps. In a world where first impressions are heavily influenced by profile pictures, Blind Date strives to shift the focus to meaningful connections based on personality and shared interests.
