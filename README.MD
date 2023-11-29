@@ -1,6 +1,5 @@
 # Link to video Presentation
-https://youtu.be/IRqcqr6nOpA
-
+Click on the image to go to the video presentation: 
 [<img src="https://raw.githubusercontent.com/Lailaismyname/Blinddate/main/appimg.png" width="50%">](https://www.youtube.com/watch?v=IRqcqr6nOpA)
 
 # About This Project
