@@ -1,6 +1,10 @@
 # Link to video Presentation
 https://youtu.be/IRqcqr6nOpA
 
+[![Video presentation blinddate]  
+(https://raw.githubusercontent.com/Lailaismyname/Blinddate/main/appimg.png)] 
+(https://www.youtube.com/watch?v=IRqcqr6nOpA)  
+
 # About This Project
 
 Welcome to Blind Date – a revolutionary approach to online dating that aims to transcend the superficial nature often associated with traditional dating apps. In a world where first impressions are heavily influenced by profile pictures, Blind Date strives to shift the focus to meaningful connections based on personality and shared interests.
